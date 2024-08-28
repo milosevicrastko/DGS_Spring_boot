@@ -1,6 +1,6 @@
-package dataLayer.repositories;
+package com.dgsApp.poc.dataLayer.repositories;
 
-import dataLayer.entities.User;
+import com.dgsApp.poc.dataLayer.entities.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;

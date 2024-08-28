@@ -1,12 +1,12 @@
-package dataLayer.entities;
+package com.dgsApp.poc.serviceLayer.dto;
 
 import lombok.Data;
 
 import java.util.UUID;
 
 @Data
-public class User {
-    private UUID id;
+public class UserDto {
+    private UUID uuid;
     private String name;
     private String email;
 }
