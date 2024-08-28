@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Data
 public class UserDto {
-    private UUID uuid;
+    private Long id;
     private String name;
     private String email;
 }
