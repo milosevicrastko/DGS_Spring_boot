@@ -1,4 +1,4 @@
-package com.dgsApp.poc;
+package com.dgsApp.poc.unitTests;
 
 import com.dgsApp.poc.dataLayer.entities.User;
 import com.dgsApp.poc.dataLayer.repositories.UserRepository;
@@ -17,8 +17,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -47,7 +46,10 @@ class UserServiceTests {
 
     @Test
     void testSaveUser() {
-        userService.save(userDto);
+        when(userRepository.save(any(User.class))).thenReturn(userToUserDtoMapper.userDtoToUser(userDto));
+        UserDto savedUserDto = userService.save(userDto);
+        assertNotNull(savedUserDto);
+        assertEquals("John Doe", savedUserDto.getName());
         verify(userRepository, times(1)).
                 save(userToUserDtoMapper.userDtoToUser(userDto));
 
@@ -67,7 +69,12 @@ class UserServiceTests {
 
     @Test
     void testUpdateUserNotFound() {
+        when(userRepository.existsById(1L)).thenReturn(false);
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            userService.update(1L, userDto);
+        });
 
+        assertEquals("User not found with id: 1", thrown.getMessage());
     }
 
 
@@ -79,7 +86,12 @@ class UserServiceTests {
 
     @Test
     void testDeleteUserNotFound() {
+        when(userRepository.existsById(1L)).thenReturn(false);
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
+            userService.deleteById(1L);
+        });
 
+        assertEquals("User not found with id: 1", thrown.getMessage());
     }
 
 
