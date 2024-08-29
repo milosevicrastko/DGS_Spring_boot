@@ -6,7 +6,6 @@ import com.dgsApp.poc.mappers.UserToUserDtoMapper;
 import com.dgsApp.poc.mappers.UserToUserDtoMapperImpl;
 import com.dgsApp.poc.serviceLayer.dto.UserDto;
 import com.dgsApp.poc.serviceLayer.services.implementations.UserServiceImpl;
-import com.dgsApp.poc.serviceLayer.services.interfaces.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -23,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class UserServiceTests {
+class UserServiceTests {
 
     @Mock
     private UserRepository userRepository;
@@ -47,7 +46,7 @@ public class UserServiceTests {
 
 
     @Test
-    public void testSaveUser() {
+    void testSaveUser() {
         userService.save(userDto);
         verify(userRepository, times(1)).
                 save(userToUserDtoMapper.userDtoToUser(userDto));
@@ -55,7 +54,7 @@ public class UserServiceTests {
     }
 
     @Test
-    public void testUpdateUser() {
+    void testUpdateUser() {
         when(userRepository.existsById(1L)).thenReturn(true);
         when(userRepository.save(any(User.class))).thenReturn(userToUserDtoMapper.userDtoToUser(userDto));
 
@@ -67,25 +66,25 @@ public class UserServiceTests {
     }
 
     @Test
-    public void testUpdateUserNotFound() {
+    void testUpdateUserNotFound() {
 
     }
 
 
     @Test
-    public void testDeleteUser() {
+    void testDeleteUser() {
         userService.deleteById(1L);
         verify(userRepository, times(1)).deleteById(1L);
     }
 
     @Test
-    public void testDeleteUserNotFound() {
+    void testDeleteUserNotFound() {
 
     }
 
 
     @Test
-    public void testGetUserById() {
+    void testGetUserById() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(userToUserDtoMapper.userDtoToUser(userDto)));
         UserDto foundUser = userService.findById(1L);
         assertNotNull(foundUser);
@@ -95,7 +94,7 @@ public class UserServiceTests {
 
 
     @Test
-    public void testGetAllUsers() {
+    void testGetAllUsers() {
         List<UserDto> users = Collections.singletonList(userDto);
         when(userRepository.findAll()).thenReturn(users.stream().map(userToUserDtoMapper::userDtoToUser).toList());
 
