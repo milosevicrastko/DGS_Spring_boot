@@ -18,6 +18,12 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    imports{
+        mavenBom("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release")
+    }
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.3.3'
@@ -29,10 +35,18 @@ dependencies {
     implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.6.0'
     annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.6.0'
 
-    implementation group: 'com.h2database', name: 'h2', version: '2.3.232'
+    implementation "com.netflix.graphql.dgs:graphql-dgs-spring-graphql-starter"
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.11.0'
+
+
+    implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.46.1.0'
+
+    implementation group: 'org.hibernate.orm', name: 'hibernate-community-dialects', version: '6.6.0.Final'
+
+
 
 }
 

@@ -9,7 +9,6 @@ import com.dgsApp.poc.serviceLayer.services.interfaces.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -31,8 +30,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(UserDto userDto) {
-        userRepository.save(userToUserDto.userDtoToUser(userDto));
+    public UserDto save(UserDto userDto) {
+       User user = userRepository.save(userToUserDto.userDtoToUser(userDto));
+       return userToUserDto.userToUserDto(user);
+    }
+
+    @Override
+    public UserDto update(Long id, UserDto userDto) {
+        if (!userRepository.existsById(id)) {
+            throw new EntityNotFoundException();
+        }
+        return userToUserDto.userToUserDto(userRepository.save(userToUserDto.userDtoToUser(userDto)));
+
     }
 
     @Override
