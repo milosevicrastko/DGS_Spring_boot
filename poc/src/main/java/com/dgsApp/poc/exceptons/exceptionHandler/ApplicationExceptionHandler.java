@@ -1,5 +1,6 @@
-package com.dgsApp.poc.exceptonHandler;
+package com.dgsApp.poc.exceptons.exceptionHandler;
 
+import com.dgsApp.poc.exceptons.pocExceptions.UserNotFoundException;
 import graphql.GraphQLError;
 import graphql.schema.DataFetchingEnvironment;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class ApplicationExceptionHandler{
 
-    @ExceptionHandler(EntityNotFoundException.class)
+    @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public GraphQLError handleUserNotFoundException(EntityNotFoundException ex, DataFetchingEnvironment dataFetchingEnvironment) {
         return GraphQLError.newError()

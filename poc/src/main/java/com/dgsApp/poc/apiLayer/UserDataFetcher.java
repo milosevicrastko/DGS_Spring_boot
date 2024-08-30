@@ -1,5 +1,7 @@
 package com.dgsApp.poc.apiLayer;
 
+import com.dgsApp.poc.apiLayer.inputs.CreateUserInput;
+import com.dgsApp.poc.apiLayer.inputs.UpdateUserInput;
 import com.dgsApp.poc.serviceLayer.dto.UserDto;
 import com.dgsApp.poc.serviceLayer.services.interfaces.UserService;
 import com.netflix.graphql.dgs.DgsComponent;
@@ -22,25 +24,24 @@ public class UserDataFetcher {
         return userService.findById(id);
     }
 
-
     @DgsQuery(field = "users")
     public List<UserDto> getAllUsers() {
         return userService.findAll();
     }
 
     @DgsMutation(field = "createUser")
-    public UserDto createUser(@InputArgument String name, @InputArgument String email) {
-        return userService.save(new UserDto(null, name, email));
+    public UserDto createUser(@InputArgument CreateUserInput input) {
+        return userService.save(new UserDto(null, input.getName(), input.getEmail()));
     }
 
     @DgsMutation(field = "updateUser")
-    public UserDto updateUser(@InputArgument Long id, @InputArgument String name, @InputArgument String email) {
-        return userService.update(id, new UserDto(id, name, email));
+    public UserDto updateUser(@InputArgument Long id, @InputArgument UpdateUserInput input) {
+        return userService.update(id, new UserDto(id, input.getName(), input.getEmail()));
     }
 
     @DgsMutation(field = "deleteUser")
-    public void deleteUser(@InputArgument Long id) {
-        userService.deleteById(id);
+    public UserDto deleteUser(@InputArgument Long id) {
+        return userService.deleteById(id);
     }
 
 }
