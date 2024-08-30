@@ -6,6 +6,7 @@ import com.dgsApp.poc.mappers.UserToUserDtoMapper;
 import com.dgsApp.poc.mappers.UserToUserDtoMapperImpl;
 import com.dgsApp.poc.serviceLayer.dto.UserDto;
 import com.dgsApp.poc.serviceLayer.services.implementations.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,13 +24,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
+@RequiredArgsConstructor
 @ExtendWith(MockitoExtension.class)
 class UserServiceTests {
 
     @Mock
     private UserRepository userRepository;
 
-    private final UserToUserDtoMapper userToUserDtoMapper = new UserToUserDtoMapperImpl();
+    private final UserToUserDtoMapper userToUserDtoMapper;
 
     @InjectMocks
     private UserServiceImpl userService;

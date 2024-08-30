@@ -21,9 +21,9 @@ import java.util.stream.Collectors;
 public class UserDataFetcher {
 
     private final UserService userService;
-    private final CreateUserInputToUserDtoMapper createUserInputToUserDtoMapper = new CreateUserInputToUserDtoMapperImpl();
-    private final UpdateUserInputToUserDtoMapper updateUserInputToUserDtoMapper = new UpdateUserInputToUserDtoMapperImpl();
-    private final UserOutputToUserDtoMapper userOutputToUserDtoMapper = new UserOutputToUserDtoMapperImpl();
+    private final CreateUserInputToUserDtoMapper createUserInputToUserDtoMapper;
+    private final UpdateUserInputToUserDtoMapper updateUserInputToUserDtoMapper;
+    private final UserOutputToUserDtoMapper userOutputToUserDtoMapper;
 
     @DgsQuery(field = "user")
     public UserDto getUserById(@InputArgument Long id) {

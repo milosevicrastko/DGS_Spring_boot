@@ -6,7 +6,7 @@ import com.dgsApp.poc.serviceLayer.dto.UserDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CreateUserInputToUserDtoMapper {
     CreateUserInput userDtoToCreateUserInput(UserDto userDto);
     @Mapping(target = "id", ignore = true)

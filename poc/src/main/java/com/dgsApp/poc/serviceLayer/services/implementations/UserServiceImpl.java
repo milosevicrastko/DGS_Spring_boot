@@ -16,7 +16,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-    private final UserToUserDtoMapper userToUserDto = new UserToUserDtoMapperImpl();
+    private final UserToUserDtoMapper userToUserDto;
 
     @Override
     public List<UserDto> findAll() {
