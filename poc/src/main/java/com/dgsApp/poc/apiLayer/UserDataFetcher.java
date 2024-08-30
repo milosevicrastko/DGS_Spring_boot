@@ -30,7 +30,7 @@ public class UserDataFetcher {
 
     @DgsMutation(field = "createUser")
     public UserDto createUser(@InputArgument String name, @InputArgument String email) {
-        return userService.save(new UserDto());
+        return userService.save(new UserDto(null, name, email));
     }
 
     @DgsMutation(field = "updateUser")

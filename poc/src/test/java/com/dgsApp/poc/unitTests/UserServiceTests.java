@@ -8,9 +8,11 @@ import com.dgsApp.poc.serviceLayer.dto.UserDto;
 import com.dgsApp.poc.serviceLayer.services.implementations.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Collections;
@@ -21,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class UserServiceTests {
 
     @Mock
@@ -36,7 +39,7 @@ class UserServiceTests {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.openMocks(UserServiceTests.class);
         userDto = new UserDto();
         userDto.setId(1L);
         userDto.setName("John Doe");
@@ -46,7 +49,8 @@ class UserServiceTests {
 
     @Test
     void testSaveUser() {
-        when(userRepository.save(any(User.class))).thenReturn(userToUserDtoMapper.userDtoToUser(userDto));
+        User user = userToUserDtoMapper.userDtoToUser(userDto);
+        when(userRepository.save(any(User.class))).thenReturn(user);
         UserDto savedUserDto = userService.save(userDto);
         assertNotNull(savedUserDto);
         assertEquals("John Doe", savedUserDto.getName());
