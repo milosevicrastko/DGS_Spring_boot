@@ -1,4 +1,4 @@
-package com.dgs.poc.api;
+package com.dgs.poc.api.fetchers;
 
 import com.dgs.poc.api.inputs.CreateUserInput;
 import com.dgs.poc.api.inputs.UpdateUserInput;

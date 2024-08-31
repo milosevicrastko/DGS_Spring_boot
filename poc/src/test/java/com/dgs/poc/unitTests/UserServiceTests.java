@@ -46,10 +46,7 @@ class UserServiceTests {
     @BeforeEach
     public void setUp() {
         session = MockitoAnnotations.openMocks(this);
-        userDto = new UserDto();
-        userDto.setId(1L);
-        userDto.setName("John Doe");
-        userDto.setEmail("john.doe@example.com");
+        userDto = UserDto.builder().id(1L).name("John Doe").email("john.doe@example.com").build();
     }
 
 
