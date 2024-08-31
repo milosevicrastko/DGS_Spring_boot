@@ -32,16 +32,61 @@ How to run
 
 FAQ
 ----
-Q: When i run docker-compose, i get permission errors. What can i do? 
+Q: When i run docker-compose, i get permission errors. What can i do?
+
 A: Use "sudo docker-compose up" 
 
+
 Q: When i run docker-compose, i get "bind address: already in use". What can i do? 
+
 A: There is probably something on port 3306. Please, relese that port before running docker-compose
 
-Q: I want to permanently get rid of application after running with docker-compose. What can i do? 
+
+Q: I want to permanently get rid of application after running with docker-compose. What can i do?
+
 A: Search on google about "docker compose down" and "docker volume removal" 
 
-Q: I run application using gradlew. Do i need gradle? 
+
+Q: I run application using gradlew. Do i need gradle?
+
 A: No, gradlew should have it's own gradle referenced
 
- 
+Current shortcomings and future improvements
+--------------------------------------------
+- Database username and password can be seen in application.properties and docker-compose. In production, these would not be here. They would either be in environment variable or stored in a vault. Only reason why they are here is because it's easier to check if everything is working as it should, and there are no "smoke and mirrors"
+- Application should have been divided into several modules. The only reason it is not is because of time constraint of this assignment, in my case 4 days. Application uses lombok, mapStruct and JUnit5. Those 3 working together creates the risk of bug  that would take days to figure out. Introducing modules would impose risk of missing the deadline.
+- Every one of 3 layers has their own entity object. This might be overkill for some. I wanted to make all layers as independent as possible for future expansions.
+- Better tests with more test cases. Time constraints.
+- No @Transactional since the project only has one table
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
