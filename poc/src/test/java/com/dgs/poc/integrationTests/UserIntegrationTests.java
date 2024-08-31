@@ -1,4 +1,4 @@
- package com.dgs.poc.integrationTests;
+package com.dgs.poc.integrationTests;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
