@@ -65,9 +65,8 @@ class UserServiceTests {
     @Test
     void testUpdateUser() {
         User user = userToUserDtoMapper.userDtoToUser(userDto);
-        when(userRepository.existsById(1L)).thenReturn(true);
-        when(userRepository.save(any(User.class))).thenReturn(user);
-
+        when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
+        when(userRepository.save(any())).thenReturn(user);
         UserDto updatedUser = userService.update(1L, userDto);
         assertNotNull(updatedUser);
         assertEquals("John Doe", updatedUser.getName());
@@ -77,7 +76,6 @@ class UserServiceTests {
 
     @Test
     void testUpdateUserNotFound() {
-        when(userRepository.existsById(1L)).thenReturn(false);
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
             userService.update(1L, userDto);
         });

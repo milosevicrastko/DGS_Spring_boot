@@ -36,10 +36,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto update(Long id, UserDto userDto) {
-        if (!userRepository.existsById(id)) {
-            throw new UserNotFoundException(id);
+        UserDto exisingUserDto = userToUserDto.userToUserDto(userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id)));
+        if (userDto.getName() != null) {
+            exisingUserDto.setName(userDto.getName());
         }
-        return userToUserDto.userToUserDto(userRepository.save(userToUserDto.userDtoToUser(userDto)));
+        if (userDto.getEmail() != null) {
+            exisingUserDto.setEmail(userDto.getEmail());
+        }
+        return userToUserDto.userToUserDto(userRepository.save(userToUserDto.userDtoToUser(exisingUserDto)));
 
     }
 
