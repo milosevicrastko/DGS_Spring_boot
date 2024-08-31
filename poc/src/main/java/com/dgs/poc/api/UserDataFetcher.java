@@ -1,13 +1,13 @@
-package com.dgs.poc.apiLayer;
+package com.dgs.poc.api;
 
-import com.dgs.poc.apiLayer.inputs.CreateUserInput;
-import com.dgs.poc.apiLayer.inputs.UpdateUserInput;
-import com.dgs.poc.apiLayer.outputs.UserOutput;
+import com.dgs.poc.api.inputs.CreateUserInput;
+import com.dgs.poc.api.inputs.UpdateUserInput;
+import com.dgs.poc.api.outputs.UserOutput;
 import com.dgs.poc.mappers.CreateUserInputToUserDtoMapper;
 import com.dgs.poc.mappers.UpdateUserInputToUserDtoMapper;
 import com.dgs.poc.mappers.UserOutputToUserDtoMapper;
-import com.dgs.poc.serviceLayer.dto.UserDto;
-import com.dgs.poc.serviceLayer.services.interfaces.UserService;
+import com.dgs.poc.service.dto.UserDto;
+import com.dgs.poc.service.services.interfaces.UserService;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;

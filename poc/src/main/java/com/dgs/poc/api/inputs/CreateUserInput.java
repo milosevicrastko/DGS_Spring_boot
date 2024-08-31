@@ -1,4 +1,4 @@
-package com.dgs.poc.apiLayer.inputs;
+package com.dgs.poc.api.inputs;
 
 import lombok.Data;
 

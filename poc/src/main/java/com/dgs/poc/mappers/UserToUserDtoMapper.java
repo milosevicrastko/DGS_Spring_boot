@@ -1,7 +1,7 @@
 package com.dgs.poc.mappers;
 
-import com.dgs.poc.dataLayer.entities.User;
-import com.dgs.poc.serviceLayer.dto.UserDto;
+import com.dgs.poc.data.entities.User;
+import com.dgs.poc.service.dto.UserDto;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 

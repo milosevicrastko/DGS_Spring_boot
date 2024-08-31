@@ -1,6 +1,6 @@
-package com.dgs.poc.serviceLayer.services.interfaces;
+package com.dgs.poc.service.services.interfaces;
 
-import com.dgs.poc.serviceLayer.dto.UserDto;
+import com.dgs.poc.service.dto.UserDto;
 
 import java.util.List;
 

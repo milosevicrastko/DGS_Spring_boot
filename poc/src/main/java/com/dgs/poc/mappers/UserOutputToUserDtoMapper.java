@@ -1,7 +1,7 @@
 package com.dgs.poc.mappers;
 
-import com.dgs.poc.apiLayer.outputs.UserOutput;
-import com.dgs.poc.serviceLayer.dto.UserDto;
+import com.dgs.poc.api.outputs.UserOutput;
+import com.dgs.poc.service.dto.UserDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

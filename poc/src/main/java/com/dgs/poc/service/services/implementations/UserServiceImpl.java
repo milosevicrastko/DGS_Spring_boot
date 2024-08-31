@@ -1,11 +1,11 @@
-package com.dgs.poc.serviceLayer.services.implementations;
+package com.dgs.poc.service.services.implementations;
 
-import com.dgs.poc.dataLayer.entities.User;
-import com.dgs.poc.dataLayer.repositories.UserRepository;
-import com.dgs.poc.exceptons.pocExceptions.UserNotFoundException;
+import com.dgs.poc.data.entities.User;
+import com.dgs.poc.data.repositories.UserRepository;
+import com.dgs.poc.exceptons.custom.UserNotFoundException;
 import com.dgs.poc.mappers.UserToUserDtoMapper;
-import com.dgs.poc.serviceLayer.dto.UserDto;
-import com.dgs.poc.serviceLayer.services.interfaces.UserService;
+import com.dgs.poc.service.dto.UserDto;
+import com.dgs.poc.service.services.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;

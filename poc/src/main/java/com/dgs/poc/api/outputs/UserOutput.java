@@ -1,4 +1,4 @@
-package com.dgs.poc.apiLayer.outputs;
+package com.dgs.poc.api.outputs;
 
 import lombok.Data;
 

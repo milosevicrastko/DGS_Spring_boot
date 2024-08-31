@@ -1,4 +1,4 @@
-package com.dgs.poc.serviceLayer.dto;
+package com.dgs.poc.service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

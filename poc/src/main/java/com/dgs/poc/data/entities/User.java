@@ -1,4 +1,4 @@
-package com.dgs.poc.dataLayer.entities;
+package com.dgs.poc.data.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
