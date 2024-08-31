@@ -30,5 +30,18 @@ How to run
 6. After some time, the application will start, and you can go to http://localhost:8080/graphiql
 7. On the left side there is a generated documentation
 
+FAQ
+----
+Q: When i run docker-compose, i get permission errors. What can i do? 
+A: Use "sudo docker-compose up" 
+
+Q: When i run docker-compose, i get "bind address: already in use". What can i do? 
+A: There is probably something on port 3306. Please, relese that port before running docker-compose
+
+Q: I want to permanently get rid of application after running with docker-compose. What can i do? 
+A: Search on google about "docker compose down" and "docker volume removal" 
+
+Q: I run application using gradlew. Do i need gradle? 
+A: No, gradlew should have it's own gradle referenced
 
  
