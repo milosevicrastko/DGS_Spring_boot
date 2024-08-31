@@ -8,6 +8,4 @@ import org.mapstruct.Mapper;
 public interface UserOutputToUserDtoMapper {
 
     UserOutput userDtoToUserOutput(UserDto userDto);
-
-    UserDto userOutputToUserDto(UserOutput userOutput);
 }

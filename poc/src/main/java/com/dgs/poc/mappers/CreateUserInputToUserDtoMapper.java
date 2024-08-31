@@ -8,7 +8,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface CreateUserInputToUserDtoMapper {
-    CreateUserInput userDtoToCreateUserInput(UserDto userDto);
 
     @Mapping(target = "id", ignore = true)
     UserDto createUserInputToUserDto(CreateUserInput createUserInput);

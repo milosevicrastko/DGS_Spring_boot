@@ -7,7 +7,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface UpdateUserInputToUserDtoMapper {
-    UpdateUserInput userDtoToUpdateUserInput(UserDto userDto);
 
     @Mapping(target = "id", ignore = true)
     UserDto updateUserInputToUserDto(UpdateUserInput updateUserInput);
