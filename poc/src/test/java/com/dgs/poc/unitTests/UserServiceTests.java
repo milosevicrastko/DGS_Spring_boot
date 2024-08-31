@@ -28,9 +28,12 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class UserServiceTests {
 
+    private static final String TEST_NAME = "John Doe";
+    private static final String TEST_EMAIL = "john.doe@example.com";
+    private static final String USER_NOT_FOUND_MESSAGE = "User with id 1 was not found";
+
     @Spy
     private UserRepository userRepository;
-
 
     //Constructor injection not fully supported by mapStruct yet
     @Spy
@@ -46,44 +49,45 @@ class UserServiceTests {
     @BeforeEach
     public void setUp() {
         session = MockitoAnnotations.openMocks(this);
-        userDto = UserDto.builder().id(1L).name("John Doe").email("john.doe@example.com").build();
+        userDto = UserDto.builder().id(1L).name(TEST_NAME).email(TEST_EMAIL).build();
     }
 
 
     @Test
-    void testSaveUser_ShouldSaveUser() {
+    void testSaveUser_shouldSaveUser() {
         User user = userToUserDtoMapper.userDtoToUser(userDto);
         when(userRepository.save(any())).thenReturn(user);
         UserDto savedUserDto = userService.save(userDto);
         assertNotNull(savedUserDto);
-        assertEquals("John Doe", savedUserDto.getName());
-        verify(userRepository, times(1)).
-                save(userToUserDtoMapper.userDtoToUser(userDto));
-
-    }
-
-    @Test
-    void testUpdateUser_ShouldUpdateUser() {
-        User user = userToUserDtoMapper.userDtoToUser(userDto);
-        when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
-        when(userRepository.save(any())).thenReturn(user);
-        UserDto updatedUser = userService.update(1L, userDto);
-        assertNotNull(updatedUser);
-        assertEquals("John Doe", updatedUser.getName());
+        assertEquals(TEST_NAME, savedUserDto.getName());
+        assertEquals(TEST_EMAIL, savedUserDto.getEmail());
         verify(userRepository, times(1)).save(userToUserDtoMapper.userDtoToUser(userDto));
 
     }
 
     @Test
-    void testUpdateUserNotFound_ShouldThrowException() {
+    void testUpdateUser_shouldUpdateUser() {
+        User user = userToUserDtoMapper.userDtoToUser(userDto);
+        when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
+        when(userRepository.save(any())).thenReturn(user);
+        UserDto updatedUser = userService.update(1L, userDto);
+        assertNotNull(updatedUser);
+        assertEquals(TEST_NAME, updatedUser.getName());
+        assertEquals(TEST_EMAIL, updatedUser.getEmail());
+        verify(userRepository, times(1)).save(userToUserDtoMapper.userDtoToUser(userDto));
+
+    }
+
+    @Test
+    void testUpdateUserNotFound_shouldThrowException() {
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> userService.update(1L, userDto));
 
-        assertEquals("User with id 1 was not found", thrown.getMessage());
+        assertEquals(USER_NOT_FOUND_MESSAGE, thrown.getMessage());
     }
 
 
     @Test
-    void testDeleteUser_ShouldDeleteUser() {
+    void testDeleteUser_shouldDeleteUser() {
         User user = userToUserDtoMapper.userDtoToUser(userDto);
         when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
         userService.deleteById(1L);
@@ -91,26 +95,26 @@ class UserServiceTests {
     }
 
     @Test
-    void testDeleteUserNotFound_ShouldThrowException() {
+    void testDeleteUserNotFound_shouldThrowException() {
         RuntimeException thrown = assertThrows(RuntimeException.class, () -> userService.deleteById(1L));
 
-        assertEquals("User with id 1 was not found", thrown.getMessage());
+        assertEquals(USER_NOT_FOUND_MESSAGE, thrown.getMessage());
     }
 
 
     @Test
-    void testGetUserById_ShouldReturnUser() {
+    void testGetUserById_shouldReturnUser() {
         User user = userToUserDtoMapper.userDtoToUser(userDto);
         when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
         UserDto foundUser = userService.findById(1L);
         assertNotNull(foundUser);
-        assertEquals("John Doe", foundUser.getName());
+        assertEquals(TEST_NAME, foundUser.getName());
         verify(userRepository, times(1)).findById(1L);
     }
 
 
     @Test
-    void testGetAllUsers_ShouldReturnAllUsers() {
+    void testGetAllUsers_shouldReturnAllUsers() {
         List<User> users = Stream.of(userDto).map(userToUserDtoMapper::userDtoToUser).toList();
         when(userRepository.findAll()).thenReturn(users);
 
@@ -118,7 +122,7 @@ class UserServiceTests {
 
         assertNotNull(foundUsers);
         assertEquals(1, foundUsers.size());
-        assertEquals("John Doe", foundUsers.getFirst().getName());
+        assertEquals(TEST_NAME, foundUsers.getFirst().getName());
         verify(userRepository, times(1)).findAll();
     }
 
