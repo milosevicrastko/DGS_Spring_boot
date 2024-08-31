@@ -51,7 +51,7 @@ class UserServiceTests {
 
 
     @Test
-    void testSaveUser() {
+    void testSaveUser_ShouldSaveUser() {
         User user = userToUserDtoMapper.userDtoToUser(userDto);
         when(userRepository.save(any())).thenReturn(user);
         UserDto savedUserDto = userService.save(userDto);
@@ -63,7 +63,7 @@ class UserServiceTests {
     }
 
     @Test
-    void testUpdateUser() {
+    void testUpdateUser_ShouldUpdateUser() {
         User user = userToUserDtoMapper.userDtoToUser(userDto);
         when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
         when(userRepository.save(any())).thenReturn(user);
@@ -75,17 +75,15 @@ class UserServiceTests {
     }
 
     @Test
-    void testUpdateUserNotFound() {
-        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
-            userService.update(1L, userDto);
-        });
+    void testUpdateUserNotFound_ShouldThrowException() {
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> userService.update(1L, userDto));
 
         assertEquals("User with id 1 was not found", thrown.getMessage());
     }
 
 
     @Test
-    void testDeleteUser() {
+    void testDeleteUser_ShouldDeleteUser() {
         User user = userToUserDtoMapper.userDtoToUser(userDto);
         when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
         userService.deleteById(1L);
@@ -93,17 +91,15 @@ class UserServiceTests {
     }
 
     @Test
-    void testDeleteUserNotFound() {
-        RuntimeException thrown = assertThrows(RuntimeException.class, () -> {
-            userService.deleteById(1L);
-        });
+    void testDeleteUserNotFound_ShouldThrowException() {
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> userService.deleteById(1L));
 
         assertEquals("User with id 1 was not found", thrown.getMessage());
     }
 
 
     @Test
-    void testGetUserById() {
+    void testGetUserById_ShouldReturnUser() {
         User user = userToUserDtoMapper.userDtoToUser(userDto);
         when(userRepository.findById(1L)).thenReturn(Optional.ofNullable(user));
         UserDto foundUser = userService.findById(1L);
@@ -114,7 +110,7 @@ class UserServiceTests {
 
 
     @Test
-    void testGetAllUsers() {
+    void testGetAllUsers_ShouldReturnAllUsers() {
         List<User> users = Stream.of(userDto).map(userToUserDtoMapper::userDtoToUser).toList();
         when(userRepository.findAll()).thenReturn(users);
 

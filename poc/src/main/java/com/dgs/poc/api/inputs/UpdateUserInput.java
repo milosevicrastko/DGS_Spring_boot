@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 public class
 UpdateUserInput {
-    String name;
-    String email;
+    private String name;
+    private String email;
 }

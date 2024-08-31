@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class CreateUserInput {
-    String name;
-    String email;
+    private String name;
+    private String email;
 }
