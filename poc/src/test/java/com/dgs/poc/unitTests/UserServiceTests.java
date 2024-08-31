@@ -6,6 +6,7 @@ import com.dgs.poc.mappers.UserToUserDtoMapper;
 import com.dgs.poc.mappers.UserToUserDtoMapperImpl;
 import com.dgs.poc.service.dto.UserDto;
 import com.dgs.poc.service.services.implementations.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+@RequiredArgsConstructor
 @ExtendWith(MockitoExtension.class)
 class UserServiceTests {
 
@@ -30,6 +32,7 @@ class UserServiceTests {
     private UserRepository userRepository;
 
 
+    //Constructor injection not fully supported by mapStruct yet
     @Spy
     private final UserToUserDtoMapper userToUserDtoMapper = new UserToUserDtoMapperImpl();
 
