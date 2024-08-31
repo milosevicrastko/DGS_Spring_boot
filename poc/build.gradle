@@ -47,6 +47,8 @@ dependencies {
 
    testImplementation group: 'org.springframework', name: 'spring-test', version: '6.1.12'
 
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '3.3.3'
+
 
     testImplementation 'com.h2database:h2'
 

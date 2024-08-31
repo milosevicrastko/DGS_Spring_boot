@@ -12,11 +12,13 @@ import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
-
+@Validated
 @DgsComponent
 @RequiredArgsConstructor
 public class UserDataFetcher {
@@ -37,7 +39,7 @@ public class UserDataFetcher {
     }
 
     @DgsMutation(field = "createUser")
-    public UserOutput createUser(@InputArgument CreateUserInput input) {
+    public UserOutput createUser(@InputArgument @Valid CreateUserInput input) {
         UserDto userDto = userService.save(createUserInputToUserDtoMapper.createUserInputToUserDto(input));
         return userOutputToUserDtoMapper.userDtoToUserOutput(userDto);
     }
