@@ -4,7 +4,6 @@ import com.dgsApp.poc.dataLayer.entities.User;
 import com.dgsApp.poc.dataLayer.repositories.UserRepository;
 import com.dgsApp.poc.exceptons.pocExceptions.UserNotFoundException;
 import com.dgsApp.poc.mappers.UserToUserDtoMapper;
-import com.dgsApp.poc.mappers.UserToUserDtoMapperImpl;
 import com.dgsApp.poc.serviceLayer.dto.UserDto;
 import com.dgsApp.poc.serviceLayer.services.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
@@ -46,8 +45,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto deleteById(Long id) {
-        UserDto userDto = findById(id);
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
         userRepository.deleteById(id);
-        return userDto;
+        return userToUserDto.userToUserDto(user);
     }
 }

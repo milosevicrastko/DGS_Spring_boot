@@ -52,7 +52,7 @@ class UserIntegrationTest {
 
     @Test
     void testReadUser() throws Exception {
-        String query = "{ \"query\": \"{ user(id: \\\"1\\\") { id name email } }\" }";
+        String query = "{ \"query\": \"{ user(id: \\\"2\\\") { id name email } }\" }";
 
         mockMvc.perform(post(GRAPHQL_ENDPOINT)
                         .contentType(MediaType.APPLICATION_JSON)
