@@ -1,6 +1,6 @@
-package com.dgs.poc.exceptons.handler;
+package com.dgs.poc.misc.exceptons.handler;
 
-import com.dgs.poc.exceptons.custom.UserNotFoundException;
+import com.dgs.poc.misc.exceptons.custom.UserNotFoundException;
 import graphql.GraphQLError;
 import graphql.schema.DataFetchingEnvironment;
 import jakarta.persistence.EntityNotFoundException;

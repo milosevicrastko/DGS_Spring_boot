@@ -1,5 +1,4 @@
-package com.dgs.poc.exceptons.custom;
-
+package com.dgs.poc.misc.exceptons.custom;
 
 public class UserNotFoundException extends RuntimeException {
 

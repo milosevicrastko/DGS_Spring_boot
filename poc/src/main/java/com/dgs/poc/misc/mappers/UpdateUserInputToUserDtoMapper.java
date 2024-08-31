@@ -1,4 +1,4 @@
-package com.dgs.poc.mappers;
+package com.dgs.poc.misc.mappers;
 
 import com.dgs.poc.api.inputs.UpdateUserInput;
 import com.dgs.poc.service.dto.UserDto;

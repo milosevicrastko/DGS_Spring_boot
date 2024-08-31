@@ -2,8 +2,8 @@ package com.dgs.poc.service.services.implementations;
 
 import com.dgs.poc.data.entities.User;
 import com.dgs.poc.data.repositories.UserRepository;
-import com.dgs.poc.exceptons.custom.UserNotFoundException;
-import com.dgs.poc.mappers.UserToUserDtoMapper;
+import com.dgs.poc.misc.exceptons.custom.UserNotFoundException;
+import com.dgs.poc.misc.mappers.UserToUserDtoMapper;
 import com.dgs.poc.service.dto.UserDto;
 import com.dgs.poc.service.services.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
