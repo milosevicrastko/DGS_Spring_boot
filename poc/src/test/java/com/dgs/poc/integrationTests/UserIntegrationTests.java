@@ -25,7 +25,7 @@ class UserIntegrationTests {
     private static final String GRAPHQL_ENDPOINT = "/graphql";
 
     @Test
-    void testGetAllUsers() throws Exception {
+    void testGetAllUsers_shouldReturnOk() throws Exception {
 
         String query = "{ \"query\": \"{ users { id name } }\" }";
         mockMvc.perform(post("/graphql")
@@ -35,7 +35,7 @@ class UserIntegrationTests {
     }
 
     @Test
-    void testReadUser() throws Exception {
+    void testReadUser_shouldReturnOk() throws Exception {
         String query = "{ \"query\": \"{ user(id: 2) { id name email } }\" }";
 
         mockMvc.perform(post(GRAPHQL_ENDPOINT)
@@ -45,7 +45,7 @@ class UserIntegrationTests {
     }
 
     @Test
-    void testDeleteUser() throws Exception {
+    void testDeleteUser_shouldReturnOk() throws Exception {
         String mutation = "{ \"query\": \"mutation { deleteUser(id: 1) { id } }\" }";
 
         mockMvc.perform(post(GRAPHQL_ENDPOINT)
