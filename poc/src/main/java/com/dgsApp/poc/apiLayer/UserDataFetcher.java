@@ -3,7 +3,9 @@ package com.dgsApp.poc.apiLayer;
 import com.dgsApp.poc.apiLayer.inputs.CreateUserInput;
 import com.dgsApp.poc.apiLayer.inputs.UpdateUserInput;
 import com.dgsApp.poc.apiLayer.outputs.UserOutput;
-import com.dgsApp.poc.mappers.*;
+import com.dgsApp.poc.mappers.CreateUserInputToUserDtoMapper;
+import com.dgsApp.poc.mappers.UpdateUserInputToUserDtoMapper;
+import com.dgsApp.poc.mappers.UserOutputToUserDtoMapper;
 import com.dgsApp.poc.serviceLayer.dto.UserDto;
 import com.dgsApp.poc.serviceLayer.services.interfaces.UserService;
 import com.netflix.graphql.dgs.DgsComponent;
@@ -13,7 +15,6 @@ import com.netflix.graphql.dgs.InputArgument;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @DgsComponent
